@@ -17,22 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(album => {
-      // Sélectionner les éléments HTML pour afficher les informations
-      const albumTitle = document.querySelector(".album-title");
-      const albumImage = document.querySelector(".album-image");
-      const albumArtist = document.querySelector(".album-artist");
-      const albumYear = document.querySelector(".album-year");
-      const albumPrice = document.querySelector(".album-price");
-      const albumDescription = document.querySelector(".album-description");
-
       // Mettre à jour les informations de l'album dans la page
-      if (albumTitle) albumTitle.textContent = album.title;
-      if (albumImage) albumImage.src = album.cover_url;
-      if (albumImage) albumImage.alt = album.title;
-      if (albumArtist) albumArtist.textContent = `Artiste : ${album.artist}`;
-      if (albumYear) albumYear.textContent = `Année : ${album.year}`;
-      if (albumPrice) albumPrice.textContent = `Prix : ${album.price} €`;
-      if (albumDescription) albumDescription.textContent = album.description;
+      const titleElement = document.getElementById("title");
+      const coverElement = document.getElementById("cover");
+      const artistElement = document.getElementById("artist");
+      const yearElement = document.getElementById("year");
+      const priceElement = document.getElementById("price");
+
+      if (titleElement) titleElement.textContent = album.title;
+      if (coverElement) {
+        const coverUrl = album.cover_url || './images/default-cover.jpg'; // Utiliser une image par défaut si cover_url est vide
+        coverElement.innerHTML = `<img src="${coverUrl}" alt="${album.title}">`;
+      }
+      if (artistElement) artistElement.textContent = album.artist;
+      if (yearElement) yearElement.textContent = album.year;
+      if (priceElement) priceElement.textContent = `${album.price} €`;
     })
     .catch(error => console.error("Erreur :", error.message));
 });
