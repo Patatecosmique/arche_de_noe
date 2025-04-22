@@ -2,22 +2,16 @@
 <html lang="fr">
 
 <head>
-  <title>Panier</title>
-  <meta charset="utf-8">
-  <meta name="description" content="La sélection des artistes préférés de Zoé">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
   <link href="./css/style.css" rel="stylesheet" />
   <link href="./css/contact.css" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="./images/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script defer src="js/contact.js"></script>
+  <script defer src="contact.js"></script>
 </head>
 
 <body>
-  <!-- Début du header - Commun à chaque page -->
   <header>
     <div class="limitedWidthBlockContainer informations">
       <div class="limitedWidthBlock">
@@ -49,50 +43,34 @@
       </div>
     </div>
   </header>
-  <!-- Fin du header -->
 
   <main class="limitedWidthBlockContainer">
     <div class="limitedWidthBlock" id="limitedWidthBlock">
       <div class="contactAndFormContainer" id="contactAndFormContainer">
-        <h1>Nous contacter</h1>
+        <h1>Contactez-nous</h1>
 
         <section class="contact">      
          
           </div>
           <div class="contact__message">
-            <form method="get" class="contact__message__form" id="form">
+            <form id="contact-form" method="get" class="contact__message__form" id="form">
               <div class="contact__message__form__question">
-                <label for="firstName">Prénom : </label>
-                <input type="text" name="firstName" id="firstName" required>
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
                 <p id="firstNameErrorMsg"><!-- ceci est un message d'erreur --></p>
               </div>
               <div class="contact__message__form__question">
-                <label for="lastName">Nom : </label>
-                <input type="text" name="lastName" id="lastName" required>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
                 <p id="lastNameErrorMsg"></p>
-              </div>
+              </div>  
               <div class="contact__message__form__question">
-                <label for="address">Adresse : </label>
-                <input type="text" name="address" id="address">
+                <label for="message">Message :</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
                 <p id="addressErrorMsg"></p>
               </div>
-              <div class="contact__message__form__question">
-                <label for="city">Ville : </label>
-                <input type="text" name="city" id="city" >
-                <p id="cityErrorMsg"></p>
-              </div>
-              <div class="contact__message__form__question">
-                <label for="email">Email : </label>
-                <input type="email" name="email" id="email">
-                <p id="emailErrorMsg"></p>
-              </div>
-              <div class="contact__message__form__question">
-                <label for="message">Message : </label>
-                <textarea name="message" id="message" placeholder="Votre message"></textarea>
-                <p id="messageErrorMsg"></p>
-              </div>
               <div class="contact__message__form__submit">
-                <input type="submit" value="Réserver" id="messageBtn">
+                <button type="submit">Envoyer</button>
               </div>
             </form>
           </div>
@@ -101,30 +79,8 @@
     </div>
   </main>
 
-  <!-- Début du footer - Commun à chaque page -->
   <footer>
     <div class="limitedWidthBlockContainer footerMain">
       <div class="limitedWidthBlock">
         <div>
-          <img class="logo" src="./images/logo_transparent.png" alt="Logo de l'entreprise">
-        </div>
-        <div>
-          <p><strong>L'Arche de Zoé</strong> <br>14 Boulevard Voltaire <br>75011 Paris</p>
-        </div>
-        <div>
-          <p>Téléphone : 01-12-23-34-45</p>
-        </div>
-        <div>
-          <p>Email : contact@arche-de-zoe.com</p>
-        </div>
-      </div>
-    </div>
-    <div class="limitedWidthBlockContainer footerSecondary">
-      <div class="limitedWidthBlock">
-        <p>© Copyright 2023 | e-commerce | Tous droits réservés</p>
-      </div>
-    </div>
-  </footer>
-  <!-- Fin du footer -->
-  </body>
-</html>
+          <img class="logo" src

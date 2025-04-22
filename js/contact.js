@@ -1,32 +1,22 @@
-// FILE: contact.js
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
 
-  form.addEventListener("submit", event => {
-    const name = form.querySelector("#name").value.trim();
-    const email = form.querySelector("#email").value.trim();
-    const message = form.querySelector("#message").value.trim();
-    let isValid = true;
+  form.addEventListener("submit", (event) => {
+    const name = document.querySelector("#name").value.trim();
+    const email = document.querySelector("#email").value.trim();
+    const message = document.querySelector("#message").value.trim();
 
-    // Vérification des champs
-    if (!name) {
-      alert("Le nom est requis.");
-      isValid = false;
+    if (!name || !email || !message) {
+      event.preventDefault(); // Empêcher l'envoi du formulaire
+      alert("Veuillez remplir tous les champs.");
+      return;
     }
 
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Veuillez entrer une adresse email valide.");
-      isValid = false;
-    }
-
-    if (!message) {
-      alert("Le message est requis.");
-      isValid = false;
-    }
-
-    // Empêcher la soumission si invalide
-    if (!isValid) {
+    // Vérification de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
       event.preventDefault();
+      alert("Veuillez entrer une adresse email valide.");
     }
   });
 });
