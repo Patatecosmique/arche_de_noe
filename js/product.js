@@ -1,37 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Récupérer l'ID de l'album depuis l'URL
   const params = new URLSearchParams(window.location.search);
   const albumId = params.get("id");
 
   if (!albumId) {
-    console.error("Aucun ID d'album trouvé dans l'URL.");
+    console.error("ID album manquant");
     return;
   }
 
-  // Récupérer les informations de l'album via l'API
   fetch(`https://637d41d916c1b892ebca9a5a.mockapi.io/api/discs/${albumId}`)
     .then(response => {
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des informations de l'album.");
-      }
+      if (!response.ok) throw new Error("Erreur API");
       return response.json();
     })
     .then(album => {
-      // Mettre à jour les informations de l'album dans la page
-      const titleElement = document.getElementById("title");
-      const coverElement = document.getElementById("cover");
-      const artistElement = document.getElementById("artist");
-      const yearElement = document.getElementById("year");
-      const priceElement = document.getElementById("price");
-
-      if (titleElement) titleElement.textContent = album.title;
-      if (coverElement) {
-        const coverUrl = album.cover_url || './images/default-cover.jpg'; // Utiliser une image par défaut si cover_url est vide
-        coverElement.innerHTML = `<img src="${coverUrl}" alt="${album.title}">`;
-      }
-      if (artistElement) artistElement.textContent = album.artist;
-      if (yearElement) yearElement.textContent = album.year;
-      if (priceElement) priceElement.textContent = `${album.price} €`;
+      document.getElementById("title").textContent = album.title;
+      document.getElementById("cover").innerHTML = 
+        `<img src="${album.cover_url || './images/default-cover.jpg'}" alt="${album.title}">`;
+      document.getElementById("artist").textContent = album.artist;
+      document.getElementById("year").textContent = album.year;
+      document.getElementById("price").textContent = album.price;
     })
-    .catch(error => console.error("Erreur :", error.message));
+    .catch(error => console.error("Erreur:", error));
 });

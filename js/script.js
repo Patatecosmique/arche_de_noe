@@ -1,24 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Récupérer les albums via l'API
   fetch('https://637d41d916c1b892ebca9a5a.mockapi.io/api/discs')
     .then(response => {
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des albums");
-      }
+      if (!response.ok) throw new Error("Erreur API");
       return response.json();
     })
     .then(albums => {
       // Filtrer l'album avec id 7
       const filteredAlbums = albums.filter(album => album.id !== "7");
-
-      // Sélectionner le conteneur pour afficher les albums
+      
+      // Afficher les albums
       const itemsContainer = document.getElementById("items");
-      if (!itemsContainer) {
-        console.error("Le conteneur avec l'ID 'items' est introuvable.");
-        return;
-      }
-
-      // Générer le HTML pour chaque album filtré
+      
       filteredAlbums.forEach(album => {
         const albumElement = document.createElement("a");
         albumElement.href = `./product.html?id=${album.id}`;
@@ -32,5 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         itemsContainer.appendChild(albumElement);
       });
     })
-    .catch(error => console.error("Erreur :", error.message));
+    .catch(error => console.error("Erreur:", error));
 });
+
+
